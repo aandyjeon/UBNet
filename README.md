@@ -54,8 +54,6 @@ dataset/
 ## Pretrained weights
 Download the weights in https://drive.google.com/drive/folders/1_Dkr4CAPxWHbkOU7PIV3gbg9-oqotWRI?usp=sharing
 
-## CelebA-HQ
-
 ### Training
 base model
 ```
