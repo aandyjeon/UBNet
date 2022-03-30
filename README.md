@@ -19,7 +19,8 @@ Although convolutional neural networks (CNNs) achieve state-of-the-art in image 
 **The architecture of the proposed model, UBNet.** UBNet takes the hierarchical features captured by the base model as input. The Trans-layers set all the <img src="https://render.githubusercontent.com/render/math?math=\mathbf{h}_l"> be the same size. Then, all the concatenated <img src="https://render.githubusercontent.com/render/math?math=\mathbf{g}_l"> activated through the Ortho-block in which Ortho-Conv and Ortho-Trans layers encode multi-variant features. From the output of the Ortho-block, each classifier outputs confidence scores for each low-to-high feature. They are averaged for the final prediction. In this figure, we use *L = 5* for simplicity.
 
 
-# Requirements
+# Experiments
+## Requirements
 Dependencies can be installed via anaconda.
 ```
 python>=3.7
@@ -31,7 +32,7 @@ opencv-python=4.5.3.56
 cudatoolkit=11.1.74
 ```
 
-# Dataset Preparation
+## Dataset Preparation
 
 ### CelebA-HQ
 Download the CelebA-HQ and CelebA in the links as below.
@@ -49,7 +50,7 @@ dataset/
       CelebA-HQ-img/  # CelebA-HQ images
 ```
 
-# Usage
+## Usage
 
 ### Pretrained weights
 Download the weights in https://drive.google.com/drive/folders/1_Dkr4CAPxWHbkOU7PIV3gbg9-oqotWRI?usp=sharing
