@@ -7,7 +7,9 @@ Although convolutional neural networks (CNNs) achieve state-of-the-art in image 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/50168126/160750955-f3d0621a-787f-4c66-8746-ce197cf78ebf.png" width="600" height="480">
 </p>
+'''
 **Categorization of Data Bias Problems** with an example of gender prediction biased in hair length. The most limited case, unknown bias, is what we address in this paper.
+'''
 
 
 # The architecture of the proposed model, UBNet
