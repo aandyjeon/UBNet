@@ -33,7 +33,7 @@ cudatoolkit=11.1.74
 
 # Dataset Preparation
 
-## CelebA-HQ
+### CelebA-HQ
 Download the CelebA-HQ and CelebA in the links as below.
 - https://github.com/switchablenorms/CelebAMask-HQ
 - https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html (In-The-Wild Images)
@@ -51,7 +51,7 @@ dataset/
 
 # Usage
 
-## Pretrained weights
+### Pretrained weights
 Download the weights in https://drive.google.com/drive/folders/1_Dkr4CAPxWHbkOU7PIV3gbg9-oqotWRI?usp=sharing
 
 ### Training
