@@ -1,5 +1,6 @@
 <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 
 # A Conservative Approach for Unbiased Learning on Unknown Biases (Accepted on CVPR2022)
 
@@ -17,7 +18,7 @@ Although convolutional neural networks (CNNs) achieve state-of-the-art in image 
 
 # The architecture of the proposed model, UBNet
 ![architecture](https://user-images.githubusercontent.com/50168126/160760993-5ec676b5-d876-4607-99f3-7d6eda9d811a.jpg)
-**The architecture of the proposed model, UBNet.** UBNet takes the hierarchical features captured by the base model as input. The Trans-layers set all the \($\mathbf{h}_l$\) be the same size. Then, all the concatenated \($\mathbf{g}_l$\) activated through the Ortho-block in which Ortho-Conv and Ortho-Trans layers encode multi-variant features. From the output of the Ortho-block, each classifier outputs confidence scores for each low-to-high feature. They are averaged for the final prediction. In this figure, we use \($L = 5$\) for simplicity.
+**The architecture of the proposed model, UBNet.** UBNet takes the hierarchical features captured by the base model as input. The Trans-layers set all the $\mathbf{h}_l$ be the same size. Then, all the concatenated $\mathbf{g}_l$ activated through the Ortho-block in which Ortho-Conv and Ortho-Trans layers encode multi-variant features. From the output of the Ortho-block, each classifier outputs confidence scores for each low-to-high feature. They are averaged for the final prediction. In this figure, we use $L = 5$ for simplicity.
 
 # Dependencies and Environment
 Dependencies can be installed via anaconda.
