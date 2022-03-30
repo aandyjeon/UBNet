@@ -4,7 +4,7 @@
 
 Although convolutional neural networks (CNNs) achieve state-of-the-art in image classification, recent works address their unreliable predictions due to their excessive dependence on biased training data. Existing unbiased modeling postulates that the bias in the dataset is obvious to know, but it is actually unsuited for image datasets including countless sensory attributes. To mitigate this issue, we present a new scenario that does not necessitate a predefined bias. Under the observation that CNNs do have multi-variant and unbiased representations in the model, we propose a conservative framework that employs this internal information for unbiased learning. Specifically, this mechanism is implemented via hierarchical features captured along the multiple layers and orthogonal regularization. Extensive evaluations on public benchmarks demonstrate our method is effective for unbiased learning.
 
-<img src="https://user-images.githubusercontent.com/50168126/160750955-f3d0621a-787f-4c66-8746-ce197cf78ebf.png" width="800" height="600">
+<img src="https://user-images.githubusercontent.com/50168126/160750955-f3d0621a-787f-4c66-8746-ce197cf78ebf.png" width="600" height="500">
 *Categorization of Data Bias Problems* with an example of gender prediction biased in hair length. The most limited case, unknown bias, is what we address in this paper.
 
 # The architecture of the proposed model, UBNet
