@@ -74,8 +74,4 @@ python main.py -e celeba_ubnet --is_train --is_valid --ubnet --cuda --use_pretra
 
 Note that we have reported the average of 3 evaluations. The uploaded weight is from one of the 3 experiments; ACC(EB1) 99.29%, ACC(EB2) 58.74%, and hence ACC(Test) 79.02%. 
 
-```
-python main.py -e celebA_ubnet_test --ubnet --cuda --checkpoint_orth weights/celebA_ubnet/celeba_ubnet.pth --checkpoint weights/celebA_baseline/celeba_base.pth --data CelebA-HQ --data_dir dataset --save_dir exp --gpu=0 --batch_size=32 --model vgg11
-```
-
 
