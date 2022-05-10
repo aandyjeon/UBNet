@@ -162,6 +162,8 @@ class Trainer(object):
             total_num_train += images.shape[0]
 
             if self.option.orthonet:
+                for param in self.net.parameters():
+                    param.requires_grad = False
 
                 if self.option.data == 'CelebA-HQ':
                     """
