@@ -18,7 +18,7 @@ parser.add_argument('--model',            default='vgg11',               help='v
 parser.add_argument('--weight_decay',     default=0.0005,    type=float, help='Adam optimizer weight decay')
 
 
-parser.add_argument('--ubnet',         action='store_true',        help='whether using orthonet')
+parser.add_argument('--ubnet',            action='store_true',        help='whether using ubnet')
 parser.add_argument('--checkpoint',       default=None,               help='checkpoint to resume')
 parser.add_argument('--log_step',         default=50,     type=int,   help='step for logging in iteration')
 parser.add_argument('--save_step',        default=1,      type=int,   help='step for saving in epoch')
