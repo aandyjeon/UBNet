@@ -5,7 +5,6 @@ from torch import optim
 from torch.autograd import Variable
 from torch.hub import load_state_dict_from_url
 from torchvision import models
-from torchsummary import summary
 
 import model.orthonet as orthonet
 
@@ -18,9 +17,6 @@ import numpy as np
 
 from tqdm import tqdm
 from utils import logger_setting
-#from torch.utils.tensorboard import SummaryWriter
-#
-#writer = SummaryWriter('runs/celebA-HQ')
 
 
 class Trainer(object):
@@ -58,7 +54,7 @@ class Trainer(object):
                 self.net.classifier[6] = nn.Linear(4096, self.option.n_class)
 
 
-        if self.option.orthonet:
+        if self.option.ubnet:
             if self.option.data == 'CelebA-HQ':
                 self.orthnet = orthonet.OrthoNet(num_classes=self.option.n_class)
                 self.loss_orth = nn.CrossEntropyLoss(ignore_index=255)
@@ -69,7 +65,7 @@ class Trainer(object):
 
         if self.option.cuda:
 
-            if self.option.orthonet:
+            if self.option.ubnet:
                 self.orthnet.cuda()
                 self.net.cuda()
                 self.loss_orth.cuda()
@@ -87,14 +83,14 @@ class Trainer(object):
 
 
     def _set_optimizer(self):
-        if self.option.orthonet:
+        if self.option.ubnet:
             self.optim_orth = optim.Adam(filter(lambda p: p.requires_grad, self.orthnet.parameters()), lr=self.option.lr,  weight_decay=self.option.weight_decay)
         else:
             self.optim = optim.Adam(filter(lambda p: p.requires_grad, self.net.parameters()), lr=self.option.lr, weight_decay=self.option.weight_decay)
 
         lr_lambda = lambda step: self.option.lr_decay_rate ** (step // self.option.lr_decay_period)
 
-        if self.option.orthonet:
+        if self.option.ubnet:
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optim_orth, lr_lambda=lr_lambda, last_epoch=-1)
         else:
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optim, lr_lambda=lr_lambda, last_epoch=-1)
@@ -122,7 +118,7 @@ class Trainer(object):
             #initializing all the parameters
                 self.net.apply(self._weights_init_xavier)
 
-            if self.option.orthonet:
+            if self.option.ubnet:
                 self.orthnet.apply(self._weights_init_xavier)
 
             if self.option.use_pretrain:
@@ -135,13 +131,13 @@ class Trainer(object):
     def _mode_setting(self, is_train=True):
 
         if is_train:
-            if self.option.orthonet:
+            if self.option.ubnet:
                 self.orthnet.train()
                 self.net.train()
             else: self.net.train()
 
         else:
-            if self.option.orthonet:
+            if self.option.ubnet:
                 self.orthnet.eval()
                 self.net.eval()
             else: self.net.eval()
@@ -161,7 +157,7 @@ class Trainer(object):
             labels = self._get_variable(labels)
             total_num_train += images.shape[0]
 
-            if self.option.orthonet:
+            if self.option.ubnet:
                 for param in self.net.parameters():
                     param.requires_grad = False
 
@@ -259,7 +255,7 @@ class Trainer(object):
                 self.optim.step()
                     
 
-        if self.option.orthonet:    
+        if self.option.ubnet:    
             msg = f"[TRAIN] ORTH LOSS : {loss_orth_sum/len(data_loader)} LOSS_CONV : {loss_conv_sum/total_num_train} LOSS_TRANS : {loss_trans_sum/total_num_train}"
         else: 
             msg = f"[TRAIN] BASE LOSS : {loss_sum/len(data_loader)}"
@@ -295,7 +291,7 @@ class Trainer(object):
             batch_size = images.shape[0]
             total_num_test += batch_size
 
-            if self.option.orthonet:
+            if self.option.ubnet:
                 self.optim_orth.zero_grad()
                 
                 if self.option.data == 'CelebA-HQ':
@@ -371,7 +367,7 @@ class Trainer(object):
                     total_loss_trans += loss_trans
                     
     
-            if not self.option.orthonet:   
+            if not self.option.ubnet:   
                 self.optim.zero_grad()
                 pred_label = self.net(images)
                 loss = self.loss(pred_label, labels)
@@ -379,7 +375,7 @@ class Trainer(object):
                 total_num_correct += self._num_correct(pred_label,labels,topk=1).data
                 total_loss += loss.data*batch_size
 
-        if self.option.orthonet:
+        if self.option.ubnet:
 
             avg_loss_orth = total_loss_orth/total_num_test
             avg_acc_orth = total_num_correct_orth/total_num_test
@@ -390,7 +386,7 @@ class Trainer(object):
                 msg = f"[EVALUATION] LOSS : {avg_loss_orth}, ACCURACY : {avg_acc_orth} LOSS_CONV : {total_loss_conv/total_num_test} LOSS_TRANS : {total_loss_trans/total_num_test}"
    
                    
-        if not self.option.orthonet:   
+        if not self.option.ubnet:   
 
             avg_loss = total_loss/total_num_test
             avg_acc = float(total_num_correct)/total_num_test
@@ -421,7 +417,7 @@ class Trainer(object):
 
 
     def _save_model(self, step):
-        if self.option.orthonet:
+        if self.option.ubnet:
             torch.save({
                 'step': step,
                 'optim_state_dict': self.optim_orth.state_dict(),
