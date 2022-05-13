@@ -1,4 +1,4 @@
-# A Conservative Approach for Unbiased Learning on Unknown Biases (Accepted on CVPR2022)
+# A Conservative Approach for Unbiased Learning on Unknown Biases (CVPR2022)
 
 ## Abstract
 
