@@ -1,5 +1,13 @@
 # A Conservative Approach for Unbiased Learning on Unknown Biases (CVPR2022)
 
+@inproceedings{jeon2022conservative,
+  title={A Conservative Approach for Unbiased Learning on Unknown Biases},
+  author={Jeon, Myeongho and Kim, Daekyung and Lee, Woochul and Kang, Myungjoo and Lee, Joonseok},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={16752--16760},
+  year={2022}
+}
+
 ## Abstract
 
 Although convolutional neural networks (CNNs) achieve state-of-the-art in image classification, recent works address their unreliable predictions due to their excessive dependence on biased training data. Existing unbiased modeling postulates that the bias in the dataset is obvious to know, but it is actually unsuited for image datasets including countless sensory attributes. To mitigate this issue, we present a new scenario that does not necessitate a predefined bias. Under the observation that CNNs do have multi-variant and unbiased representations in the model, we propose a conservative framework that employs this internal information for unbiased learning. Specifically, this mechanism is implemented via hierarchical features captured along the multiple layers and orthogonal regularization. Extensive evaluations on public benchmarks demonstrate our method is effective for unbiased learning.
