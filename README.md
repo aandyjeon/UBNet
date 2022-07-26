@@ -52,7 +52,7 @@ Download the CelebA-HQ and CelebA in the links as below.
 
 We expect the directory sturcture to be the following
 ```
-dataset/
+/data/
   celebA/
     celebA/
       img_celeba/     # CelebA images in wild
