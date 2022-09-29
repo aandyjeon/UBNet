@@ -436,7 +436,7 @@ class Trainer(object):
         self.net.load_state_dict(ckpt['net_state_dict'],strict=False)
 
 
-    def train(self, train_loader, eb1_val_loader=None, eb2_val_loader=None):
+    def train(self, train_loader, ub1_val_loader=None, ub2_val_loader=None):
         self._initialization()
         if self.option.checkpoint is not None:
             self._load_model()
@@ -450,9 +450,9 @@ class Trainer(object):
             if step == 1 or step % self.option.save_step == 0 or step == (self.option.max_step-1):
 
                 if self.option.data == 'CelebA-HQ':
-                    if eb1_val_loader is not None and eb2_val_loader is not None:
-                        self._validate(eb1_val_loader, step = step)
-                        self._validate(eb2_val_loader, valid_type = 'eb2', step = step)
+                    if ub1_val_loader is not None and ub2_val_loader is not None:
+                        self._validate(ub1_val_loader, step = step)
+                        self._validate(ub2_val_loader, valid_type = 'ub2', step = step)
                         
                 self._save_model(step)
                 
