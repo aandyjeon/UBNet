@@ -47,26 +47,26 @@ def main():
     if option.data == 'CelebA-HQ':
         
         train_dataset  = CelebA_HQ(root = '/data', txt_file = 'datasets/CelebA-HQ/train.txt')
-        eb1_valid_dataset  = CelebA_HQ(root = '/data', txt_file = 'datasets/CelebA-HQ/eb1_val.txt')
-        eb2_valid_dataset  = CelebA_HQ(root = '/data', txt_file = 'datasets/CelebA-HQ/eb2_val.txt')
+        ub1_valid_dataset  = CelebA_HQ(root = '/data', txt_file = 'datasets/CelebA-HQ/ub1_val.txt')
+        ub2_valid_dataset  = CelebA_HQ(root = '/data', txt_file = 'datasets/CelebA-HQ/ub2_val.txt')
         
         train_loader = data.DataLoader(dataset=train_dataset,
                                 batch_size=option.batch_size,
                                 num_workers=option.num_workers)
 
-        eb1_valid_loader = data.DataLoader(dataset=eb1_valid_dataset,
+        ub1_valid_loader = data.DataLoader(dataset=ub1_valid_dataset,
                                        batch_size=option.batch_size,
                                        num_workers=option.num_workers)
 
-        eb2_valid_loader = data.DataLoader(dataset=eb2_valid_dataset,
+        ub2_valid_loader = data.DataLoader(dataset=ub2_valid_dataset,
                                        batch_size=option.batch_size,
                                        num_workers=option.num_workers)
 
-        print(f"train_dataset: {len(train_dataset)} | eb1_valid_dataset: {len(eb1_valid_dataset)} | eb2_valid_dataset: {len(eb2_valid_dataset)}")
-        print(f"train_loader: {len(train_loader)} | eb1_valid_loader: {len(eb1_valid_loader)} | eb2_valid_loader: {len(eb2_valid_loader)}")
+        print(f"train_dataset: {len(train_dataset)} | ub1_valid_dataset: {len(ub1_valid_dataset)} | ub2_valid_dataset: {len(ub2_valid_dataset)}")
+        print(f"train_loader: {len(train_loader)} | ub1_valid_loader: {len(ub1_valid_loader)} | ub2_valid_loader: {len(ub2_valid_loader)}")
 
         if option.is_train:
             save_option(option)
-            trainer.train(train_loader=train_loader, eb1_val_loader=eb1_valid_loader, eb2_val_loader = eb2_valid_loader)
+            trainer.train(train_loader=train_loader, ub1_val_loader=eb1_valid_loader, ub2_val_loader = ub2_valid_loader)
 
 if __name__ == '__main__': main()
